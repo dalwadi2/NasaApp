@@ -13,5 +13,7 @@
     <string name="msg_session_expired">Your session has been expired, please login again.</string>
     <string name="msg_unexpected_error">Unexpected Error, Please Contact Customer Care.</string>
     <string name="msg_internet_connection">Please check your internet connection</string>
+    <string name="image_list_screen_title">Nasa Images</string>
+    <string name="image_detail_screen_title">Image Slider with Details</string>
 
 </resources>

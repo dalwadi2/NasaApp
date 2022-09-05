@@ -36,7 +36,6 @@ class ImageListAdapter(
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 .placeholder(R.drawable.progress_animation)
                 .error(R.drawable.logo_nasa)
-                .centerInside()
                 .transition(DrawableTransitionOptions.withCrossFade(200))
                 .into(holder.mBinding.ivNasa)
 

@@ -1,7 +1,8 @@
 package dev.harshdalwadi.nasaapp.views.fragments
 
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import clover.companion.app.extensions.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import dev.harshdalwadi.nasaapp.R
@@ -9,7 +10,7 @@ import dev.harshdalwadi.nasaapp.adapters.ImageListAdapter
 import dev.harshdalwadi.nasaapp.base.BaseFragment
 import dev.harshdalwadi.nasaapp.databinding.FragmentImageListBinding
 import dev.harshdalwadi.nasaapp.models.RespNasaDataItem
-import dev.harshdalwadi.nasaapp.utils.GridSpacingItemDecoration
+import dev.harshdalwadi.nasaapp.utils.ItemOffsetDecoration
 import dev.harshdalwadi.nasaapp.utils.extensions.customCollect
 import dev.harshdalwadi.nasaapp.utils.extensions.initialize
 import dev.harshdalwadi.nasaapp.viewModels.ImageListViewModel
@@ -26,28 +27,24 @@ class ImageListFragment : BaseFragment<FragmentImageListBinding>() {
     private lateinit var mBinding: FragmentImageListBinding
     private val viewModel: ImageListViewModel by hiltNavGraphViewModels(R.id.nav_graph)
     private lateinit var imageListAdapter: ImageListAdapter
-    val spanCount = 3
-
-    private val decorator: GridSpacingItemDecoration by lazy {
-        val spanCount = spanCount
-        val spacing = resources.getDimensionPixelSize(R.dimen.margin_default_16dp)
-        val includeEdge = false
-        GridSpacingItemDecoration(spanCount, spacing, includeEdge)
-    }
+    private val spanCount = 3
 
     override fun onReady() {
         mBinding = getViewDataBinding()
 
         imageListAdapter = ImageListAdapter { position: Int, nasaDataItem: RespNasaDataItem? ->
-
+            navigate(ImageListFragmentDirections.actionImageListFragmentToImageDetailWithSliderFragment(position))
         }
 
         mBinding.run {
             rvLocationList.apply {
-                initialize(manager = GridLayoutManager(context, spanCount)) {
+                val mLayoutManager = StaggeredGridLayoutManager(spanCount, RecyclerView.VERTICAL)
+                mLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
+                initialize(manager = mLayoutManager) {
                     imageListAdapter
                 }
-                addItemDecoration(decorator)
+                setHasFixedSize(false)
+                addItemDecoration(ItemOffsetDecoration(context, R.dimen.item_offset))
             }
         }
 

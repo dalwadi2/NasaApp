@@ -2,10 +2,10 @@ package dev.harshdalwadi.nasaapp.views.activities
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.harshdalwadi.nasaapp.R
 import dev.harshdalwadi.nasaapp.base.BaseActivity
@@ -32,11 +32,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onReady(savedInstanceState: Bundle?) {
         mBinding = getViewDataBinding()
         setViewModelObservers()
-        setSupportActionBar(mBinding.toolbar)
-
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
 
     }
 
