@@ -9,5 +9,16 @@
         android:id="@+id/splashFragment"
         android:name="dev.harshdalwadi.nasaapp.views.fragments.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" />
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_imageListFragment"
+            app:destination="@id/imageListFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageListFragment"
+        android:name="dev.harshdalwadi.nasaapp.views.fragments.ImageListFragment"
+        android:label="fragment_image_list"
+        tools:layout="@layout/fragment_image_list" />
 </navigation>

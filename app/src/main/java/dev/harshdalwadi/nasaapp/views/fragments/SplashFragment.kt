@@ -10,14 +10,12 @@ import dev.harshdalwadi.nasaapp.databinding.FragmentSplashBinding
 
 @AndroidEntryPoint
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
-    private var isLogin: Boolean = false
     override fun findContentView() = R.layout.fragment_splash
 
     lateinit var mBinding: FragmentSplashBinding
 
     override fun onReady() {
         mBinding = getViewDataBinding()
-
 
         Handler(Looper.getMainLooper()).postDelayed({
             redirectToHome()
@@ -27,7 +25,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
     private fun redirectToHome() {
         lifecycleScope.launchWhenResumed {
-//            navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+            navigate(SplashFragmentDirections.actionSplashFragmentToImageListFragment())
         }
     }
 

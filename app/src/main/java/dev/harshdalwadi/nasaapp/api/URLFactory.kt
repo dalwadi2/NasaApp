@@ -8,7 +8,7 @@ object URLFactory {
     private var SCHEME = "https"
     private lateinit var HOST: String
     private lateinit var API_PATH: String
-    const val URL_TESTING = "https://drive.google.com"
+    const val URL_TESTING = "drive.google.com"
     const val URL_PROD = ""
 
     fun provideHttpUrl(): HttpUrl {

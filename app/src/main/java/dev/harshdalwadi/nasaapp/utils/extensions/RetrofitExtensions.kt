@@ -20,7 +20,6 @@ suspend fun <T> SharedFlow<Resource<T>>.customCollect(
     showLoaderAlways: Boolean = true,
     baseFragment: BaseFragment<*>,
     onSuccess: T.() -> Unit,
-    onFailure: T.() -> Unit,
 ) {
     this.collect {
         when (it) {
