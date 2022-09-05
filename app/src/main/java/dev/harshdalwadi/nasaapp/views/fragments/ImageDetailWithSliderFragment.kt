@@ -40,8 +40,7 @@ class ImageDetailWithSliderFragment : BaseFragment<FragmentImageDetailWithSlider
                 }
 
                 override fun onPageSelected(position: Int) {
-                    btnNext.isVisible = position != masterNasaList.size - 1
-                    btnPrev.isVisible = position != 0
+                    hideShowButtons(position)
                 }
 
                 override fun onPageScrollStateChanged(state: Int) {
@@ -56,6 +55,11 @@ class ImageDetailWithSliderFragment : BaseFragment<FragmentImageDetailWithSlider
                 viewpagerImages.setCurrentItem(--viewpagerImages.currentItem, true)
             }
         }
+    }
+
+    private fun FragmentImageDetailWithSliderBinding.hideShowButtons(position: Int) {
+        btnNext.isVisible = position != masterNasaList.size - 1
+        btnPrev.isVisible = position != 0
     }
 
 
@@ -83,6 +87,7 @@ class ImageDetailWithSliderFragment : BaseFragment<FragmentImageDetailWithSlider
                     mBinding.run {
                         viewpagerImages.adapter = ImageSliderAdapter(requireContext(), masterNasaList)
                         viewpagerImages.setCurrentItem(selectedPosition, true)
+                        hideShowButtons(selectedPosition)
                     }
                 }
             }
